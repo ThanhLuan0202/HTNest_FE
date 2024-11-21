@@ -1,36 +1,4 @@
-  /* navigation*/
-
-  .navigation-bar {
-      display: flex;
-      justify-content: space-between;
-      /* tach giua*/
-      align-items: center;
-      height: 60px;
-      background-color: rgb(97, 54, 19);
-      color: rgb(204, 204, 204);
-
-  }
-
-  .icon-phone {
-      font-size: 18px;
-  }
-
-  .navigation-bar .left,
-  .navigation-bar .right {
-      display: flex;
-      align-items: center;
-      margin: 0 90px;
-  }
-
-  .navigation-bar .left p,
-  .navigation-bar .right i {
-      margin: 0 8px;
-  }
-
-  .timeWork {
-      margin-left: 10px;
-  }
-
+  
   /* body*/
   .body {}
 

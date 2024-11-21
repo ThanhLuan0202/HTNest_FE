@@ -5,29 +5,12 @@ import toYenImage from '../Icons/image/yenhop2.jpg';
 import toYen2Image from '../Icons/image/yenhop.jpg';
 import yenHopImage from '../Icons/image/yenchung.jpg';
 
-
 function User() {
 
 
     return (
         <div>
-            <div className="navigation-bar">
-                <div className="left">
-
-                    <i class="fas fa-phone icon-phone"></i>
-                    <p>08 8921 8255 |</p>
-                    <i class="fas fa-clock icon-clock"></i>
-                    <p className="timeWork">08h30 – 20h30 từ thứ 2 – thứ 7, CN: 08h30 – 17h30</p>
-                </div>
-
-                <div className="right">
-
-                    <i class="fas fa-search icon-find"></i>
-                    <i class="fas fa-shopping-cart icon-shopping"></i>
-                    <i class="fas fa-user icon-user"></i>
-
-                </div>
-            </div>
+            
             <div className="body">
                 <div className="body-script"></div>
                 <div className="body-product">

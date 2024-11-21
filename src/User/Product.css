@@ -1,0 +1,30 @@
+.body{
+    height: 500px;
+    background-color: #FBF9F8;
+
+
+}
+
+.card {
+    border-radius: 12px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .card-text {
+    font-size: 0.9rem;
+  }
+  
+  .card img {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .btn {
+    border-radius: 20px;
+  }
+  
