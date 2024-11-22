@@ -1,11 +1,10 @@
-  
   /* body*/
   .body {}
 
   .body-script {
       height: 500px;
       background-color: black;
-      
+
   }
 
   .body-product {
@@ -65,7 +64,7 @@
       align-items: center;
       width: 100%;
       height: 100%;
-    padding: 40px;
+      padding: 40px;
   }
 
   .script-text {

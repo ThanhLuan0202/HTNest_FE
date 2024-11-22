@@ -53,11 +53,30 @@
 }
 
 .navigation-bar .left img,
-.navigation-bar .right h3 {
+.navigation-bar .right h4 {
     margin: 0 12px;
 }
 
-.navigation-bar h3 {
+.navigation-bar h4 {
+    display: flex;
+    align-items: center;
+    padding: 8px;
     font-weight: 800;
     color: #603719;
+    height: 100%;
+    font-size: 18px;
+}
+
+.navigation-bar h4:hover {
+    background-color: #603719;
+    opacity: 0.5;
+    cursor: pointer;
+    color: #FFFEFE;
+}
+.navigation-bar a {
+    text-decoration: none; 
+
+}
+.link{
+    height: 100% !important;
 }

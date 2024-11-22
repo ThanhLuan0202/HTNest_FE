@@ -11,8 +11,11 @@ function UserRouter() {
     return (
       <div>
         <Navigation/>
-        {/* <User /> */}
-        <Product />
+        <Routes>
+        <Route path="/user" element={< User />} />
+        <Route path="/product" element={< Product />} />
+
+      </Routes>
       </div>
     );
   }

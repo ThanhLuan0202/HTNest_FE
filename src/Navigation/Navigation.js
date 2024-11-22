@@ -1,6 +1,8 @@
 import React from "react";
 import "./Navigation.css"
 import logo from '../Icons/image/logoweb.jpg';
+import { Link } from "react-router-dom";
+
 
 
 function Navigation() {
@@ -30,9 +32,14 @@ function Navigation() {
                     <h2>HT Nest</h2>
                 </div>
                 <div className="right">
-                <h3>Giới thiệu</h3>
-                <h3>Sản Phẩm <i class="fas fa-angle-down"></i></h3>
-                <h3>Liên Hệ</h3>
+                    <Link to="/user" className="link">
+                        <h4>GIỚI THIỆU</h4>
+                    </Link>
+                    <Link to="/product" className="link">
+                        <h4>SẢN PHẨM <i class="fas fa-angle-down ms-2"> </i></h4>
+                    </Link>
+
+                    <h4>LIÊN HỆ</h4>
 
                 </div>
             </div>
