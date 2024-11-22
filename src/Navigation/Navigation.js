@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Navigation.css"
 import logo from '../Icons/image/logoweb.jpg';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -9,11 +9,20 @@ function Navigation() {
     const [isScrolled, setIsScrolled] = useState(false);
 
 
+
+
+
+
+    const navigate = useNavigate();
+
+    const handleUserClick = () => {
+        navigate('./login');
+    };
     const handleScroll = () => {
         if (window.scrollY > 60) {
-            setIsScrolled(true); 
+            setIsScrolled(true);
         } else {
-            setIsScrolled(false); 
+            setIsScrolled(false);
         }
     };
 
@@ -41,7 +50,13 @@ function Navigation() {
 
                     <i class="fas fa-search icon-find"></i>
                     <i class="fas fa-shopping-cart icon-shopping"></i>
-                    <i class="fas fa-user icon-user"></i>
+
+                    {/* <i class="fas fa-user icon-user" onClick={handleUserClick}></i>
+                     */}
+                    <Link to="/login">
+                        <i class="fas fa-user icon-user" ></i>
+                    </Link>
+
 
                 </div>
             </div>

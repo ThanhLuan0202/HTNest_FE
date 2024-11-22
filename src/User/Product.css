@@ -50,12 +50,12 @@
   color: #FFFFFF !important;
   right: -65%;
   border-radius: 80px !important;
-  top: -26px;
   background: linear-gradient(96.55deg, #8F582A 12.14%, #E9BC98 105.25%) !important;
   border: none !important;
   position: absolute;
   right: 20px;
-  top: 575px;
+  bottom: 20px;
+  width: 100px !important;
 }
 
 .cardbody {

@@ -42,9 +42,9 @@ function Footer() {
                             <li>Chính sách vận chuyển - kiểm hàng</li>
                             <li>Câu hỏi thường gặp</li>
                         </ul>
-                        <div>
+                        {/* <div>
                             <img src="path-to-bocongthuong-logo.png" alt="Bộ Công Thương" />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
