@@ -27,6 +27,11 @@
     margin: 0 8px;
 }
 
+.left h2 {
+    color: #603719;
+
+}
+
 .timeWork {
     margin-left: 10px;
 }
@@ -38,9 +43,19 @@
     background-color: #FFFEFE;
     display: flex;
     justify-content: space-between;
-
+    position: relative;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.8s ease; 
 }
-
+.navigation-bar.sticky {
+    position: fixed; 
+    top: 0;           
+    left: 0;          
+    width: 100%;      
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
 .navigation-bar img {
     width: 70px;
 }
@@ -67,16 +82,54 @@
     font-size: 18px;
 }
 
+
+.navigation-bar a {
+    text-decoration: none;
+
+}
+
+.link {
+    height: 100%;
+    position: relative; 
+}
+
 .navigation-bar h4:hover {
     background-color: #603719;
     opacity: 0.5;
     cursor: pointer;
     color: #FFFEFE;
 }
-.navigation-bar a {
-    text-decoration: none; 
 
+
+.link:hover .dropdown {
+    display: block;
 }
-.link{
-    height: 100% !important;
+
+
+.dropdown {
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    top: 0;  
+    left: 12px;    
+    width: 150px;  
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
+    z-index: 1;  
+    
+}
+
+
+.dropdown ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.dropdown ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.dropdown ul li:hover {
+    background-color: #ddd;
 }

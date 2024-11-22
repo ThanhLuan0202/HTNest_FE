@@ -1,0 +1,62 @@
+.footer {
+    position: relative;
+    height: 320px;
+    background-color: rgb(97, 54, 19);
+}
+
+
+.logoinfooter {
+    width: 200px !important;
+}
+
+
+.c1 p,
+.c1 h5,
+.c1 .h7 {
+    margin-bottom: 0;
+}
+
+
+.footer h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer p,
+.footer ul li {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer ul li {
+    margin-bottom: 5px;
+}
+
+
+.footer img {
+    width: 120px;
+}
+
+.c1 h5 {
+    color: rgb(196, 120, 86);
+
+}
+
+.detail {
+    color: rgb(196, 120, 86);
+
+}
+
+.c1 p,
+.c1 li {
+    color: #fff;
+}
+.logofooter{
+    position: absolute;
+    top: -40px;
+    left: 50%;
+}
+.footerdetail{
+    padding-top: 60px;
+}

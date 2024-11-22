@@ -12,6 +12,11 @@
 
 }
 
+.card h5 {
+  color: #613613;
+
+}
+
 .card-title {
   font-size: 1.1rem;
   color: #333;
@@ -22,8 +27,8 @@
 }
 
 .card img {
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   object-fit: cover;
 }
 
@@ -40,18 +45,39 @@
   color: #FFD013;
 }
 
-.button {
+.button-buy {
   background-color: #C47856 !important;
   color: #FFFFFF !important;
   right: -65%;
-  border-radius: 30px;
+  border-radius: 80px !important;
   top: -26px;
   background: linear-gradient(96.55deg, #8F582A 12.14%, #E9BC98 105.25%) !important;
   border: none !important;
   position: absolute;
-  right: 10px;
-  top: 570px;
+  right: 20px;
+  top: 575px;
 }
-.cardbody{
+
+.cardbody {
   position: relative;
+  border-radius: 20px !important;
+}
+
+.button-buy-in-image {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border-width: 1px;
+  border-style: solid;
+  position: absolute;
+  bottom: 37%;
+  left: 2%;
+  background: linear-gradient(96.55deg, #8F582A 12.14%, #E9BC98 105.25%) !important;
+
+}
+.logo-buy-in-image{
+  font-size: 18px;
+  position: absolute;
+  left: 6px;
+  top: 8px;
 }

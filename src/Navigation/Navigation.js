@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Navigation.css"
 import logo from '../Icons/image/logoweb.jpg';
 import { Link } from "react-router-dom";
@@ -6,7 +6,26 @@ import { Link } from "react-router-dom";
 
 
 function Navigation() {
+    const [isScrolled, setIsScrolled] = useState(false);
 
+
+    const handleScroll = () => {
+        if (window.scrollY > 60) {
+            setIsScrolled(true); 
+        } else {
+            setIsScrolled(false); 
+        }
+    };
+
+    useEffect(() => {
+
+        window.addEventListener("scroll", handleScroll);
+
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
     return (
         <div>
             <div className="navigation-info">
@@ -26,7 +45,7 @@ function Navigation() {
 
                 </div>
             </div>
-            <div className="navigation-bar">
+            <div className={`navigation-bar ${isScrolled ? 'sticky' : ''}`}>
                 <div className="left">
                     <img src={logo} alt="logo" />
                     <h2>HT Nest</h2>
@@ -36,12 +55,19 @@ function Navigation() {
                         <h4>GIỚI THIỆU</h4>
                     </Link>
                     <Link to="/product" className="link">
-                        <h4>SẢN PHẨM <i class="fas fa-angle-down ms-2"> </i></h4>
+                        <h4 >SẢN PHẨM <i className="fas fa-angle-down ms-2"></i></h4>
+                        <div className="dropdown">
+                            <ul>
+                                <li>Tổ yến tinh chế</li>
+                                <li>Yến chưng</li>
+                                <li>Set hộp quà tặng</li>
+                            </ul>
+                        </div>
                     </Link>
-
                     <h4>LIÊN HỆ</h4>
-
                 </div>
+
+
             </div>
         </div>
 
