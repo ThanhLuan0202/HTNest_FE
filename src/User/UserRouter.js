@@ -4,15 +4,18 @@ import Navigation from "../Navigation/Navigation";
 import User from './User'
 import Product from './Product'
 import Login from "../Login/Login.css";
+import Contact from './Contact';
 
 
 function UserRouter() {
   return (
     <div>
       <Routes>
-        <Route path="/user" element={< User />} />
+        <Route path="/*" element={< User />} />
         <Route path="/product" element={< Product />} />
         <Route path="/login" element={< Login />} />
+        <Route path="/contact" element={< Contact />} />
+
       </Routes>
     </div>
   );

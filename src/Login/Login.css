@@ -1,8 +1,7 @@
 .login {
-    height: 750px;
+    height: 710px;
     display: flex;
     justify-content: center;
-    align-items: center;
 
 
 }
@@ -92,7 +91,7 @@
 
 .button-submit {
     margin: 20px 0 10px 0;
-    background-color: #151717;
+    background-color: rgb(97, 54, 19);
     border: none;
     color: white;
     font-size: 15px;
@@ -102,7 +101,9 @@
     width: 100%;
     cursor: pointer;
 }
-
+.button-submit:hover{
+    background-color:rgb(107, 73, 44) ;
+}
 .p {
     text-align: center;
     color: black;
@@ -149,4 +150,8 @@
 }
 .incongoogle{
     padding: 3px;
+}
+.google{
+    border: 1px solid #ccc !important;
+
 }

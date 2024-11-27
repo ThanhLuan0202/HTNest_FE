@@ -4,6 +4,7 @@ import Navigation from './Navigation/Navigation';
 import UserRouter from './User/UserRouter';
 import Login from './Login/Login'
 import Footer from "./Footer/Footer";
+import Register from "./Register/Register";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
       <Routes>
         <Route path="/*" element={<UserRouter />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
       </Routes>
       <Footer />
 

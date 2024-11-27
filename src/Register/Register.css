@@ -1,0 +1,175 @@
+.register {
+  height: 750px;
+  display: flex;
+  justify-content: center;
+}
+
+.register-child {
+  height: 75%;
+  width: 620px;
+  margin-bottom: 10px;
+  box-shadow: 0 7px 26px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  margin-top: 30px;
+}
+/* .left-right {
+  width: 450px;
+}
+.register-child-left {
+  width: 50%;
+}
+.register-child-right {
+  width: 50%;
+} */
+/* From Uiverse.io by Yaya12085 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.title {
+  font-size: 28px;
+  color: royalblue;
+  font-weight: 600;
+  letter-spacing: -1px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.title::before,
+.title::after {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  left: 0px;
+  background-color: royalblue;
+}
+
+.title::before {
+  width: 18px;
+  height: 18px;
+  background-color: royalblue;
+}
+
+.title::after {
+  width: 18px;
+  height: 18px;
+  animation: pulse 1s linear infinite;
+}
+
+.message,
+.signin {
+  margin-top: 20px;
+  color: rgba(88, 87, 87, 0.822);
+  font-size: 14px;
+  margin-left: -30px;
+}
+
+.signin {
+  text-align: center;
+}
+
+.signin a {
+  color: royalblue;
+}
+
+.signin a:hover {
+  text-decoration: underline royalblue;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  gap: 6px;
+}
+
+.formm label {
+  position: relative;
+}
+.formm span{
+  display: block;
+  width: 300px;
+}
+.formm label .input {
+  width: 270px;
+  padding: 10px 10px 20px 10px;
+  outline: 0;
+  border: 1px solid rgba(105, 105, 105, 0.397);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.formm label .input + span {
+  left: 10px;
+  top: 15px;
+  color: grey;
+  font-size: 0.9em;
+  cursor: text;
+  transition: 0.3s ease;
+}
+
+.formm label .input:placeholder-shown + span {
+  top: 15px;
+  font-size: 0.9em;
+}
+
+.formm label .input:focus + span,
+.formm label .input:valid + span {
+  font-size: 0.7em;
+  font-weight: 600;
+}
+
+.formm label .input:valid + span {
+  color: green;
+}
+
+.submit {
+  border: none;
+  outline: none;
+  background-color: royalblue;
+  padding: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  transform: 0.3s ease;
+}
+
+.submit:hover {
+  background-color: rgb(116, 85, 60);
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+.x {
+  font-weight: 500;
+  font-size: 18px !important;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+.submit-butoon{
+  width: 270px;
+  margin-left: 10px;
+  background-color: rgb(97, 54, 19);
+}

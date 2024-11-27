@@ -1,5 +1,6 @@
 import React from "react";
 import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   return (
@@ -52,15 +53,19 @@ function Login() {
             <div>
               <div>
                 <input type="radio" id="rememberMe" />
-                <label htmlFor="rememberMe">Ghi nhớ mật khẩu</label>
+                <label htmlFor="rememberMe" className="ms-2">
+                  Ghi nhớ mật khẩu
+                </label>
               </div>
-              <span className="span">Forgot password?</span>
+              <span className="span">Quên mật khẩu</span>
             </div>
-            <button className="button-submit">Sign In</button>
-            <p className="p">
-              Don't have an account? <span className="span">Sign Up</span>
-            </p>
-            <p className="p line">Or With</p>
+            <button className="button-submit">Đăng Nhập</button>
+            <Link to = "/register">
+              <p className="p">
+                Bạn không có tài khoản ? <span className="span">Đăng Ký</span>
+              </p>
+            </Link>
+            <p className="p line">Hoặc đăng nhập với</p>
 
             <div className="flex-row">
               <button className="btn google">
