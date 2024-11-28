@@ -40,10 +40,10 @@ function Navigation() {
 
         <div className="right">
           <i class="fas fa-search icon-find"></i>
-          <i class="fas fa-shopping-cart icon-shopping"></i>
+          <Link to = "/cart">
+            <i class="fas fa-shopping-cart icon-shopping"></i>
+          </Link>
 
-          {/* <i class="fas fa-user icon-user" onClick={handleUserClick}></i>
-           */}
           <Link to="/login">
             <i class="fas fa-user icon-user"></i>
           </Link>

@@ -16,10 +16,14 @@ function Contact() {
             cạnh. Chúng tôi sẽ liên hệ giải đáp thắc mắc tới quý khách một cách
             sớm nhất.
           </h6>
-          <i class="fas fa-phone"></i>
-          <span>08 8921 8255</span>
-          <i class="fas fa-envelope"></i>
-          <span>htnest@gmail.com</span>
+          
+          <span>
+            <i class="fas fa-phone"></i>08 8921 8255
+          </span>
+          
+          <span>
+            <i class="fas fa-envelope"></i>htnest@gmail.com
+          </span>
           <span>
             <i class="fas fa-map-marker-alt"></i>1051 Hùng Vương, Tổ 4, Phường
             Thiện An, Buôn Hồ, Đăk Lăk
@@ -49,6 +53,7 @@ function Contact() {
           </label>
           <button className="button-send-mess">Gửi tin nhắn</button>
         </div>
+        
       </div>
     </div>
   );
