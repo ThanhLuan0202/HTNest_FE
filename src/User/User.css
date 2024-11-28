@@ -3,16 +3,19 @@
 }
 
 .body-script {
-  height: 500px;
+  height: 550px;
   background-color: black;
 }
 
 .body-product {
-  height: 500px;
+  height: 600px;
   background-color: #fff5e8;
   position: relative;
 }
-
+.img-bgr{
+  height: 550px;
+  width: 1903px;
+}
 .div-up-script {
   display: flex;
   justify-content: space-around;

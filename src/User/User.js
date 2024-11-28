@@ -4,12 +4,15 @@ import setImage from "../Icons/image/set.jpg";
 import toYenImage from "../Icons/image/yenhop2.jpg";
 import toYen2Image from "../Icons/image/yenhop.jpg";
 import yenHopImage from "../Icons/image/yenchung.jpg";
+import bgr from "../Icons/image/background.png";
 
 function User() {
   return (
     <div>
       <div className="body">
-        <div className="body-script"></div>
+        <div className="body-script">
+          <img className="img-bgr" src={bgr} />
+        </div>
         <div className="body-product">
           <div className="div-up-script ">
             <div className="floating-item need-border">
