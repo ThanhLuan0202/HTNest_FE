@@ -195,3 +195,39 @@ input:focus {
     border: solid 1px #212529; 
 
 }
+.item-cart{
+    position: relative;
+}
+.clear-cart {
+    border: none;
+    color: #fff;
+    background-image: linear-gradient(30deg, rgb(145, 79, 26), rgb(228, 141, 69));
+    border-radius: 20px;
+    background-size: 100% auto;
+    font-family: inherit;
+    font-size: 17px;
+    padding: 0.6em 1.5em;
+    position: absolute;
+    right: 10px;
+   }
+   
+   .clear-cart:hover {
+    background-position: right center;
+    background-size: 200% auto;
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse512 1.5s infinite;
+   }
+   
+   @keyframes pulse512 {
+    0% {
+     box-shadow: 0 0 0 0 #05bada66;
+    }
+   
+    70% {
+     box-shadow: 0 0 0 10px rgb(218 103 68 / 0%);
+    }
+   
+    100% {
+     box-shadow: 0 0 0 0 rgb(218 103 68 / 0%);
+    }
+   }

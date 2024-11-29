@@ -10,7 +10,8 @@ function Cart() {
       <div class="cart-wrap">
         <div class="container">
           <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 item-cart">
+              <button className="clear-cart">Xóa tất cả</button>
               <div class="main-heading">Giỏ hàng</div>
               <div class="table-cart">
                 <table>
@@ -185,9 +186,14 @@ function Cart() {
                       Thêm sản phẩm khác
                     </a>
                 </Link>
-                    <a href="#" class="checkout round-black-btn" title="">
+                
+                    <a href="/checkout" class="checkout round-black-btn" title="">
                       Hoàn thành thanh toán
                     </a>
+                
+                {/* <div>
+                      <marquee>8===D</marquee>
+                </div> */}
                   </div>
                 </form>
               </div>
