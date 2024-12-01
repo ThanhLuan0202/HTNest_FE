@@ -31,7 +31,7 @@ function Product() {
     pageNumbers.push(i);
   }
 
-  fetch("http://localhost:7018/api/Product", {
+  fetch("https://localhost:7018/api/Product", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
