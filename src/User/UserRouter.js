@@ -6,17 +6,18 @@ import Product from './Product'
 import Login from "../Login/Login.css";
 import Contact from './Contact';
 import Cart from './Cart';
-
+import { useLocation } from "react-router-dom";
 
 function UserRouter() {
+  const location = useLocation();
   return (
     <div>
       <Routes>
-        <Route path="/*" element={< User />} />
-        <Route path="/product" element={< Product />} />
-        <Route path="/login" element={< Login />} />
-        <Route path="/contact" element={< Contact />} />
-        <Route path="/cart" element={< Cart />} />
+        <Route path="/*"  key={location.pathname} element={< User />} />
+        <Route path="/product"  key={location.pathname} element={< Product />} />
+        <Route path="/login"  key={location.pathname} element={< Login />} />
+        <Route path="/contact"  key={location.pathname} element={< Contact />} />
+        <Route path="/cart"  key={location.pathname} element={< Cart />} />
       </Routes>
     </div>
   );

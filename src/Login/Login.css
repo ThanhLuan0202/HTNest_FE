@@ -90,6 +90,9 @@
 }
 
 .button-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0 10px 0;
     background-color: rgb(145, 79, 26);
     border: none;

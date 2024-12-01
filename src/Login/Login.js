@@ -1,8 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import config from "../config/config.js";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const [nexTpage, setNextPage] = useState(false);
+
+  const handleLogin = async (event) => {
+    console.log("cc" + email);
+    console.log("cc" + password);
+    try {
+      const loginData = { email, password };
+
+      const response = await fetch(`${config.API_ROOT}/Authen/Login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginData),
+      });
+      console.log("cc" + email);
+      console.log("cc" + password);
+
+      if (!response.ok) {
+        throw new Error("Đăng nhập không thành công.");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token); // Lưu token vào localStorage
+      console.log("Login successful!", data); // Xử lý dữ liệu đăng nhập
+      setNextPage(true);
+    } catch (error) {
+      console.error("Login failed:", error.message); // Xử lý lỗi
+    }
+  };
   return (
     <div className="login">
       <div className="login-child ">
@@ -27,6 +63,8 @@ function Login() {
                 placeholder="Enter your Email"
                 className="input"
                 type="text"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -47,9 +85,11 @@ function Login() {
                 placeholder="Enter your Password"
                 className="input"
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-
+            {error && <p className="error-message">{error}</p>}
             <div>
               <div>
                 <input type="radio" id="rememberMe" />
@@ -59,8 +99,20 @@ function Login() {
               </div>
               <span className="span">Quên mật khẩu</span>
             </div>
-            <button className="button-submit">Đăng Nhập</button>
-            <Link to = "/register">
+            <div
+              className="button-submit"
+              disabled={loading}
+              onClick={() => {
+                if (nexTpage) {
+                  window.location.href = "../Login/login";
+                } else {
+                  window.location.href = "xxx";
+                }
+              }}
+            >
+              {loading ? "Đang Đăng Nhập..." : "Đăng Nhập"}
+            </div>
+            <Link to="/register">
               <p className="p">
                 Bạn không có tài khoản ? <span className="span">Đăng Ký</span>
               </p>

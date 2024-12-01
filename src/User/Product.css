@@ -303,3 +303,29 @@ img {
     opacity: 1;
     -webkit-transform: scale(1);
             transform: scale(1); } }
+
+
+
+.pagination-l{
+  width: 50px !important;
+  height: 50px !important;
+  margin-left: 50% !important;
+  margin-top: 90px;
+  margin-bottom: 100px;
+  display: flex !important;
+
+}
+.image-product{
+  width: 500px !important;
+  height: 340px !important;
+}
+.pagination-button{
+  background-color: #8f582a !important;
+  border: none !important;
+  margin-left: 5px;
+}
+.pagination-l{
+}
+.button-revious{
+  width: 80px !important;
+}

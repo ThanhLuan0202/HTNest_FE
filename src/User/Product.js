@@ -2,36 +2,73 @@ import "./Product.css";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import config from "../config/config.js";
-
+import { useLocation } from "react-router-dom";
 import yenHopImage from "../Icons/image/yenchung.jpg";
 
 function Product() {
   const [showDetail, setShowDetail] = useState(false);
   const [getProduct, setGetProduct] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const itemsPerPage = 9;
+
   const [editingPost, setEditingPost] = useState([]);
   const token = localStorage.getItem("token");
+  const location = useLocation();
+  // const showDetailForm = () => {
+  //   setShowDetail(true);
+  // };
 
-  const showDetailForm = () => {
-    setShowDetail(true);
-  };
+  // const handlePageChange = (pageNumber) => {
+  //   setCurrentPage(pageNumber);
+  // };
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentItems = getProduct.slice(indexOfFirstItem, indexOfLastItem);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  // // Hiển thị số trang
+  // const totalPages = Math.ceil(getProduct.length / itemsPerPage);
+  // const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
+  // for (let i = 1; i <= totalPages; i++) {
+  //   pageNumbers.push(i);
+  // }
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${config.API_ROOT}/Product`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setGetProduct(data); // Cập nhật danh sách sản phẩm
+      } catch (error) {
+        console.error("Fetch Error:", error.message);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = getProduct.slice(indexOfFirstItem, indexOfLastItem);
 
-  // Hiển thị số trang
+  // Tổng số trang
   const totalPages = Math.ceil(getProduct.length / itemsPerPage);
-  const pageNumbers = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
 
-  fetch("https://localhost:7018/api/Product", {
+  // Thay đổi trang
+  const handlePageChange = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
+  fetch(`${config.API_ROOT}/Product`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -47,10 +84,12 @@ function Product() {
       console.log("API Response:", data);
       setGetProduct(data);
     })
-    .catch((error) => {
-      console.error("Fetch Error:", error.message);
-    });
-  
+    .catch(
+      (error) => {
+        console.error("Fetch Error:", error.message);
+      },
+      [location]
+    );
 
   return (
     <div className="body">
@@ -61,7 +100,7 @@ function Product() {
               <div className="card h-100 shadow-sm cardbody">
                 <img
                   src={product.image || "placeholder.jpg"}
-                  className="card-img-top"
+                  className="card-img-top image-product"
                   alt={product.productName}
                 />
                 <div className="button-buy-in-image">
@@ -69,16 +108,18 @@ function Product() {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title fw-bold mt-2">
-                    {product.productName}
+                    {product.ingredient}
                   </h5>
                   <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
                     {product.ingredient}
                   </p>
                   <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
                     {product.volume}g tổ yến
                   </p>
                   <div className="d-flex">
-                    <p className="text-danger fw-bold">{product.price} đ</p>
+                    <p className="text-danger fw-bold ">{product.price} đ</p>
                     <button className="btn btn-outline-secondary button-buy">
                       Chi tiết
                     </button>
@@ -88,65 +129,41 @@ function Product() {
             </div>
           ))}
         </div>
+        <div className="pagination-l">
+          {currentPage > 1 && (
+            <button
+              className="btn btn-primary pagination-button button-revious"
+              onClick={() => handlePageChange(currentPage - 1)}
+            >
+              Previous
+            </button>
+          )}
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+            (pageNumber) => (
+              <button
+                key={pageNumber}
+                className={`btn btn-primary pagination-button ${
+                  currentPage === pageNumber ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(pageNumber)}
+              >
+                {pageNumber}
+              </button>
+            )
+          )}
+
+          {currentPage < totalPages && (
+            <button
+              className="btn btn-primary pagination-button"
+              onClick={() => handlePageChange(currentPage + 1)}
+            >
+              Next
+            </button>
+          )}
+        </div>
       </div>
-      <div className="pagination-l">
-        {currentPage > 1 && (
-          <button
-            className="btn btn-primary"
-            onClick={() => handlePageChange(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {pageNumbers.map((pageNumber) => (
-          <button
-            key={pageNumber}
-            className={`btn btn-primary ${
-              currentPage === pageNumber ? "active" : ""
-            }`}
-            onClick={() => handlePageChange(pageNumber)}
-          >
-            {pageNumber}
-          </button>
-        ))}
-        {currentPage < totalPages && (
-          <button
-            className="btn btn-primary"
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            Next
-          </button>
-        )}
-      </div>
-      <div className="pagination-l">
-        {currentPage > 1 && (
-          <button
-            className="btn btn-primary"
-            onClick={() => handlePageChange(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {pageNumbers.map((pageNumber) => (
-          <button
-            key={pageNumber}
-            className={`btn btn-primary ${
-              currentPage === pageNumber ? "active" : ""
-            }`}
-            onClick={() => handlePageChange(pageNumber)}
-          >
-            {pageNumber}
-          </button>
-        ))}
-        {currentPage < totalPages && (
-          <button
-            className="btn btn-primary"
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            Next
-          </button>
-        )}
-      </div>
+
       <div className={`product-detail ${showDetail ? "open" : ""}`}>
         <div class="container">
           <div class="container">
