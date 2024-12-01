@@ -1,250 +1,153 @@
 import "./Product.css";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import config from "../config/config.js";
 
 import yenHopImage from "../Icons/image/yenchung.jpg";
 
 function Product() {
   const [showDetail, setShowDetail] = useState(false);
+  const [getProduct, setGetProduct] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [editingPost, setEditingPost] = useState([]);
+  const token = localStorage.getItem("token");
 
   const showDetailForm = () => {
     setShowDetail(true);
   };
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = getProduct.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Hiển thị số trang
+  const totalPages = Math.ceil(getProduct.length / itemsPerPage);
+  const pageNumbers = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pageNumbers.push(i);
+  }
+
+  fetch("http://localhost:7018/api/Product", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("API Response:", data);
+      setGetProduct(data);
+    })
+    .catch((error) => {
+      console.error("Fetch Error:", error.message);
+    });
+  
+
   return (
     <div className="body">
       <div class="container py-4">
         <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
+          {currentItems.map((product) => (
+            <div className="col-md-4" key={product.id}>
+              <div className="card h-100 shadow-sm cardbody">
+                <img
+                  src={product.image || "placeholder.jpg"}
+                  className="card-img-top"
+                  alt={product.productName}
+                />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    {product.productName}
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    {product.ingredient}
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    {product.volume}g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold">{product.price} đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>{" "}
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>{" "}
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>{" "}
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 shadow-sm cardbody">
-              <img
-                src={yenHopImage}
-                class="card-img-top"
-                alt="Set quà hộp đứng 18 hũ YCS"
-              />
-              <div className="button-buy-in-image">
-                <i class="fas fa-shopping-cart logo-buy-in-image"></i>
-              </div>
-              <div class="card-body">
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <i class="fas fa-star star"></i>
-                <h5 class="card-title fw-bold mt-2">
-                  Set 6 hũ: 2 hũ hương cam, 2 hũ hương dâu, 2 hũ hương vani
-                </h5>
-                <p class="card-text text-muted fw-bold">
-                  Thành phần: Tổ yến, đường phèn, Canxi, DHA{" "}
-                </p>
-                <p class="card-text text-muted fw-bold">
-                  {" "}
-                  Hàm lượng yến: 1g tổ yến{" "}
-                </p>
-
-                <div className="d-flex">
-                  <p class="text-danger fw-bold">1.800.000 đ</p>
-                  <button
-                    class="btn btn-outline-secondary  button-buy"
-                    onClick={() => showDetailForm()}
-                  >
-                    Chi tiết
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
+      <div className="pagination-l">
+        {currentPage > 1 && (
+          <button
+            className="btn btn-primary"
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </button>
+        )}
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            className={`btn btn-primary ${
+              currentPage === pageNumber ? "active" : ""
+            }`}
+            onClick={() => handlePageChange(pageNumber)}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        {currentPage < totalPages && (
+          <button
+            className="btn btn-primary"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+          </button>
+        )}
+      </div>
+      <div className="pagination-l">
+        {currentPage > 1 && (
+          <button
+            className="btn btn-primary"
+            onClick={() => handlePageChange(currentPage - 1)}
+          >
+            Previous
+          </button>
+        )}
+        {pageNumbers.map((pageNumber) => (
+          <button
+            key={pageNumber}
+            className={`btn btn-primary ${
+              currentPage === pageNumber ? "active" : ""
+            }`}
+            onClick={() => handlePageChange(pageNumber)}
+          >
+            {pageNumber}
+          </button>
+        ))}
+        {currentPage < totalPages && (
+          <button
+            className="btn btn-primary"
+            onClick={() => handlePageChange(currentPage + 1)}
+          >
+            Next
+          </button>
+        )}
+      </div>
       <div className={`product-detail ${showDetail ? "open" : ""}`}>
-        
         <div class="container">
           <div class="container">
             <div class="card">
