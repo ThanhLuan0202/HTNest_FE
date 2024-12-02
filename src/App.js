@@ -6,6 +6,8 @@ import Login from './Login/Login'
 import Footer from "./Footer/Footer";
 import Register from "./Register/Register";
 import Checkout from './Checkout/Checkout';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -20,8 +22,22 @@ function App() {
 
       </Routes>
       <Footer />
-
+      <ToastContainer
+        position="top-right"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{
+          zIndex: '999990 !important',
+        }}
+      />
     </Router>
+    
 
   );
 }

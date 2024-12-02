@@ -45,12 +45,12 @@ function Login() {
         decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
       //! Chú ý dòng này
       localStorage.setItem("name", userName); // Lưu userName vào localStorage
-      toast.success("Đăng nhập thành công");
+      toast.success( "Tài Khoản " + userName + " Đăng Nhập Thành Công");
       navigate("/");
     } catch (error) {
       console.error("Lỗi:", error.message);
       setError("Đăng nhập không thành công. Vui lòng thử lại.");
-      toast.error("Đăng nhập lỗi");
+      toast.error(error.message);
     } finally {
       setLoading(false);
     }
