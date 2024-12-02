@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import config from "../config/config.js";
+import { toast } from "react-toastify";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -30,13 +31,17 @@ function Login() {
       if (!response.ok) {
         throw new Error("Đăng nhập không thành công.");
       }
-
+      // toast.success("dang nhap done");
       const data = await response.json();
       localStorage.setItem("token", data.token); // Lưu token vào localStorage
       console.log("Login successful!", data); // Xử lý dữ liệu đăng nhập
+
       setNextPage(true);
+
+      console.log("da chay toi dong nay");
     } catch (error) {
-      console.error("Login failed:", error.message); // Xử lý lỗi
+      // console.error("Login failed:", error.message); // Xử lý lỗi
+      toast.error("dang nhap loi");
     }
   };
   return (
@@ -102,13 +107,9 @@ function Login() {
             <div
               className="button-submit"
               disabled={loading}
-              onClick={() => {
-                if (nexTpage) {
-                  window.location.href = "../Login/login";
-                } else {
-                  window.location.href = "xxx";
-                }
-              }}
+              
+              
+              onClick={handleLogin}
             >
               {loading ? "Đang Đăng Nhập..." : "Đăng Nhập"}
             </div>

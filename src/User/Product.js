@@ -68,28 +68,7 @@ function Product() {
     }
   };
 
-  fetch(`${config.API_ROOT}/Product`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("API Response:", data);
-      setGetProduct(data);
-    })
-    .catch(
-      (error) => {
-        console.error("Fetch Error:", error.message);
-      },
-      [location]
-    );
+ 
 
   return (
     <div className="body">
