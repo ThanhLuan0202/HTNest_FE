@@ -8,10 +8,10 @@ import { jwtDecode } from "jwt-decode";
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [getCategory, setGetCategory] = useState([]);
+  const [userName, setUserName] = useState(localStorage.getItem("name") || "");
   const navigate = useNavigate();
-  const [userName, setUserName] = useState(localStorage.getItem("name"));
   const token = localStorage.getItem("token");
-  // Handle scroll event to toggle the sticky class
+
   const handleScroll = () => {
     if (window.scrollY > 60) {
       setIsScrolled(true);
@@ -19,26 +19,28 @@ function Navigation() {
       setIsScrolled(false);
     }
   };
-  useEffect(() => {
-    const storedName = localStorage.getItem("name");
-    if (storedName) {
-      setUserName(storedName);
-    }
-  }, []);
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setUserName(localStorage.getItem("name"));
-      console.log("cc" + localStorage.getItem("name"));
-    };
 
-    // Lắng nghe sự kiện thay đổi localStorage
-    window.addEventListener("storage", handleStorageChange);
-
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  // Fetch categories from API
+
+  useEffect(() => {
+    //! Token thay đổi, cập nhật userName
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const name =
+          decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
+        setUserName(name); // State sẽ update tại đây
+      } catch (error) {
+        console.error("Lỗi Token:", error);
+      }
+    }
+  }, [token]);
+
   const fetchCategories = async () => {
     try {
       const response = await fetch(`${config.API_ROOT}/Category`, {
@@ -47,23 +49,11 @@ function Navigation() {
           "Content-Type": "application/json",
         },
       });
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      if (token) {
-        try {
-          const decoded = jwtDecode(token);
-          const userName =
-            decoded[
-              "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-            ];
-          console.log("Username:", userName);
-        } catch (error) {
-          console.error("Invalid token:", error);
-        }
-      } else {
-        console.warn("Token not found in localStorage.");
-      }
+
       const data = await response.json();
       setGetCategory(data);
     } catch (error) {
@@ -71,14 +61,8 @@ function Navigation() {
     }
   };
 
-  // Call the fetchCategories function when the component mounts
   useEffect(() => {
     fetchCategories();
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   return (
@@ -94,7 +78,6 @@ function Navigation() {
         </div>
 
         <div className="right">
-          <p>{userName}</p>
           <i className="fas fa-search icon-find"></i>
           <Link to="/cart">
             <i className="fas fa-shopping-cart icon-shopping"></i>
