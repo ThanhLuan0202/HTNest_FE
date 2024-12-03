@@ -1,0 +1,105 @@
+.productManager {
+  background-color: #fbf9f8;
+  height: auto;
+  width: 100%;
+  margin-left: 70px;
+}
+.tableProduct {
+  border-style: solid;
+  border-color: #ccc;
+  width: 92%;
+  margin-top: 20px;
+  margin-left: 9px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+.tableProduct td {
+    border: 2px solid #ccc;
+    padding: 8px;
+    text-align: center;
+
+  }
+.addProductt {
+    height: 32.7px;
+    width: 183.46px;
+    border-radius: 7px;
+    background-color: #9b5625;
+    border: none;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .tableProduct th {
+    border: 2px solid #ccc;
+    padding: 8px;
+    background-color: #603719;
+    color: #fff4e8;
+    text-align: center;
+
+  }
+.pgn-product-manager{
+    background-color: #603719 !important;
+    border: none !important;
+}
+.pagination-ll {
+    width: 50px !important;
+    height: 50px !important;
+    margin-left: 50% !important;
+    margin-top: 10px !important;
+    margin-bottom: 100px;
+    display: flex !important;
+   
+
+}
+.title-table{
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 20px;
+
+}
+.search{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.pgn-product-manager-next{
+    width: 200px !important;
+    background-color: #603719 !important;
+    border: none !important;
+    
+}
+.pgn-product-manager-back{
+    width: 80px;   
+    background-color: #603719 !important;
+    border: none !important;
+
+}
+.delete{
+    color: red;
+    margin-left: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update{
+    color: rgb(90, 204, 90);
+    margin-left: 20px;
+    height: 30px;
+    width: 30px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.update:hover , .delete:hover{
+    color: #fff;
+    background-color: #603719;
+    cursor: pointer;
+}

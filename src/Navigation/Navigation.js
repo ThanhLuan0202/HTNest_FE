@@ -4,14 +4,51 @@ import logo from "../Icons/image/logoweb.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import config from "../config/config.js";
 import { jwtDecode } from "jwt-decode";
+import { toast } from "react-toastify";
 
 function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [getCategory, setGetCategory] = useState([]);
   const [userName, setUserName] = useState(localStorage.getItem("name") || "");
+  const [avatar, setAvatar] = useState(localStorage.getItem("Image") || "");
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [clickLogout, setClickLogout] = useState(false);
 
+  const handleLogoutClick = () => {
+    setClickLogout(true);
+  };
+  useEffect(() => {
+    if (clickLogout) {
+      const logout = async () => {
+        try {
+          const response = await fetch(`${config.API_ROOT}/Authen/logout`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Gửi token nếu cần
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Logout failed");
+          }
+
+          // Xử lý thành công
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          toast.success("Đăng xuất thành công");
+          window.location.href = "/"; // Redirect về trang chủ
+        } catch (error) {
+          console.error("Logout error:", error);
+          toast.error("Đăng xuất không thành công, vui lòng thử lại!");
+        } finally {
+          setClickLogout(false); // Reset trạng thái
+        }
+      };
+
+      logout();
+    }
+  }, [clickLogout]);
   const handleScroll = () => {
     if (window.scrollY > 60) {
       setIsScrolled(true);
@@ -35,6 +72,7 @@ function Navigation() {
         const name =
           decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
         setUserName(name); // State sẽ update tại đây
+        setAvatar(name);
       } catch (error) {
         console.error("Lỗi Token:", error);
       }
@@ -84,12 +122,22 @@ function Navigation() {
           </Link>
 
           <Link to="/login">
-            {userName ? (
-              <span>{userName}</span>
+            {avatar ? (
+              <span>{avatar}</span>
             ) : (
               <i className="fas fa-user icon-user"></i>
             )}
           </Link>
+          {avatar ? (
+              <i
+              class="fas fa-sign-out-alt"
+              style={{ fontSize: "23px", cursor: "pointer" }}
+              onClick={handleLogoutClick}
+            ></i>
+            ) : (
+              null
+            )}
+          
         </div>
       </div>
 

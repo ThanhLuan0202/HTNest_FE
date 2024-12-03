@@ -4,6 +4,10 @@ import axios from "axios";
 import config from "../config/config.js";
 import { useLocation } from "react-router-dom";
 import yenHopImage from "../Icons/image/yenchung.jpg";
+import hinh1 from "../Icons/image/yenhop.jpg"
+import hinh2 from "../Icons/image/yenchung.jpg"
+import hinh3 from "../Icons/image/yenhop2.jpg"
+import hinh4 from "../Icons/image/set.jpg"
 
 function Product() {
   const [showDetail, setShowDetail] = useState(false);
@@ -73,12 +77,47 @@ function Product() {
   return (
     <div className="body">
       <div class="container py-4">
-        <div class="row g-4">
+        {/* <div class="row g-4">
           {currentItems.map((product) => (
             <div className="col-md-4" key={product.id}>
               <div className="card h-100 shadow-sm cardbody">
                 <img
                   src={product.image || "placeholder.jpg"}
+                  className="card-img-top image-product"
+                  alt={product.productName}
+                />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    {product.ingredient}
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    {product.ingredient}
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    {product.volume}g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">{product.price} đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div> */}
+        <div class="row g-4">
+          {currentItems.map((product) => (
+            <div className="col-md-4" key={product.id}>
+              <div className="card h-100 shadow-sm cardbody">
+                <img
+                  src={hinh1}
                   className="card-img-top image-product"
                   alt={product.productName}
                 />
