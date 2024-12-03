@@ -2,7 +2,9 @@
   height: auto;
   background-color: #fbf9f8;
 }
-
+.haha{
+  margin-bottom: 150px;
+}
 .card {
   border-radius: 12px;
   border-color: rgba(196, 120, 86, 0.5) !important;

@@ -4,10 +4,10 @@ import axios from "axios";
 import config from "../config/config.js";
 import { useLocation } from "react-router-dom";
 import yenHopImage from "../Icons/image/yenchung.jpg";
-import hinh1 from "../Icons/image/yenhop.jpg"
-import hinh2 from "../Icons/image/yenchung.jpg"
-import hinh3 from "../Icons/image/yenhop2.jpg"
-import hinh4 from "../Icons/image/set.jpg"
+import hinh1 from "../Icons/image/yenhop.jpg";
+import hinh2 from "../Icons/image/yenchung.jpg";
+import hinh3 from "../Icons/image/yenhop2.jpg";
+import hinh4 from "../Icons/image/set.jpg";
 
 function Product() {
   const [showDetail, setShowDetail] = useState(false);
@@ -72,12 +72,11 @@ function Product() {
     }
   };
 
- 
-
   return (
     <div className="body">
       <div class="container py-4">
-        {/* <div class="row g-4">
+        <div class="row g-4">
+          {/*
           {currentItems.map((product) => (
             <div className="col-md-4" key={product.id}>
               <div className="card h-100 shadow-sm cardbody">
@@ -112,42 +111,8 @@ function Product() {
             </div>
           ))}
         </div> */}
-        <div class="row g-4">
-          {currentItems.map((product) => (
-            <div className="col-md-4" key={product.id}>
-              <div className="card h-100 shadow-sm cardbody">
-                <img
-                  src={hinh1}
-                  className="card-img-top image-product"
-                  alt={product.productName}
-                />
-                <div className="button-buy-in-image">
-                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
-                </div>
-                <div className="card-body">
-                  <h5 className="card-title fw-bold mt-2">
-                    {product.ingredient}
-                  </h5>
-                  <p className="card-text text-muted fw-bold">
-                    <span>Thành phần: </span>
-                    {product.ingredient}
-                  </p>
-                  <p className="card-text text-muted fw-bold">
-                    <span> Hàm lượng yến: </span>
-                    {product.volume}g tổ yến
-                  </p>
-                  <div className="d-flex">
-                    <p className="text-danger fw-bold ">{product.price} đ</p>
-                    <button className="btn btn-outline-secondary button-buy">
-                      Chi tiết
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="pagination-l">
+
+          {/* <div className="pagination-l">
           {currentPage > 1 && (
             <button
               className="btn btn-primary pagination-button button-revious"
@@ -179,127 +144,297 @@ function Product() {
               Next
             </button>
           )}
-        </div>
-      </div>
-
-      <div className={`product-detail ${showDetail ? "open" : ""}`}>
-        <div class="container">
-          <div class="container">
-            <div class="card">
-              <div
-                className="button-close-product-detail"
-                onClick={() => setShowDetail(false)}
-              >
-                <i class="fas fa-times-circle"></i>
-              </div>
-              <div class="container-fliud">
-                <div class="wrapper row">
-                  <div class="preview col-md-6">
-                    <div class="preview-pic tab-content">
-                      <div class="tab-pane active" id="pic-1">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-2">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-3">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-4">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-5">
-                        <img src={yenHopImage} />
-                      </div>
-                    </div>
-                    <ul class="preview-thumbnail nav nav-tabs">
-                      <li class="active">
-                        <a data-target="#pic-1" data-toggle="tab">
-                          <img src={yenHopImage} />
-                        </a>
-                      </li>
-                      <li>
-                        <a data-target="#pic-2" data-toggle="tab">
-                          <img src={yenHopImage} />
-                        </a>
-                      </li>
-                      <li>
-                        <a data-target="#pic-3" data-toggle="tab">
-                          <img src={yenHopImage} />
-                        </a>
-                      </li>
-                      <li>
-                        <a data-target="#pic-4" data-toggle="tab">
-                          <img src={yenHopImage} />
-                        </a>
-                      </li>
-                      <li>
-                        <a data-target="#pic-5" data-toggle="tab">
-                          <img src={yenHopImage} />
-                        </a>
-                      </li>
-                    </ul>
+        </div> */}
+          <div class="row g-4 haha">
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
                   </div>
-                  <div class="details col-md-6">
-                    <h3 class="product-title">men's shoes fashion</h3>
-                    <div class="rating">
-                      <div class="stars">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-md-4 " >
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={hinh1} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">
+                    Yến sào nguyên chất, tự nhiên đảm bảo chất lượng
+                  </h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    Yến , hà thủ ô, vi cá, bào ngư.
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    12g tổ yến
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1.000.000 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+         
+        </div>
+
+        <div className={`product-detail ${showDetail ? "open" : ""}`}>
+          <div class="container">
+            <div class="container">
+              <div class="card">
+                <div
+                  className="button-close-product-detail"
+                  onClick={() => setShowDetail(false)}
+                >
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="container-fliud">
+                  <div class="wrapper row">
+                    <div class="preview col-md-6">
+                      <div class="preview-pic tab-content">
+                        <div class="tab-pane active" id="pic-1">
+                          <img src={yenHopImage} />
+                        </div>
+                        <div class="tab-pane" id="pic-2">
+                          <img src={yenHopImage} />
+                        </div>
+                        <div class="tab-pane" id="pic-3">
+                          <img src={yenHopImage} />
+                        </div>
+                        <div class="tab-pane" id="pic-4">
+                          <img src={yenHopImage} />
+                        </div>
+                        <div class="tab-pane" id="pic-5">
+                          <img src={yenHopImage} />
+                        </div>
                       </div>
-                      <span class="review-no">41 reviews</span>
+                      <ul class="preview-thumbnail nav nav-tabs">
+                        <li class="active">
+                          <a data-target="#pic-1" data-toggle="tab">
+                            <img src={yenHopImage} />
+                          </a>
+                        </li>
+                        <li>
+                          <a data-target="#pic-2" data-toggle="tab">
+                            <img src={yenHopImage} />
+                          </a>
+                        </li>
+                        <li>
+                          <a data-target="#pic-3" data-toggle="tab">
+                            <img src={yenHopImage} />
+                          </a>
+                        </li>
+                        <li>
+                          <a data-target="#pic-4" data-toggle="tab">
+                            <img src={yenHopImage} />
+                          </a>
+                        </li>
+                        <li>
+                          <a data-target="#pic-5" data-toggle="tab">
+                            <img src={yenHopImage} />
+                          </a>
+                        </li>
+                      </ul>
                     </div>
-                    <p class="product-description">
-                      Suspendisse quos? Tempus cras iure temporibus? Eu
-                      laudantium cubilia sem sem! Repudiandae et! Massa senectus
-                      enim minim sociosqu delectus posuere.
-                    </p>
-                    <h4 class="price">
-                      current price: <span>$180</span>
-                    </h4>
-                    <p class="vote">
-                      <strong>91%</strong> of buyers enjoyed this product!{" "}
-                      <strong>(87 votes)</strong>
-                    </p>
-                    <h5 class="sizes">
-                      sizes:
-                      <span class="size" data-toggle="tooltip" title="small">
-                        s
-                      </span>
-                      <span class="size" data-toggle="tooltip" title="medium">
-                        m
-                      </span>
-                      <span class="size" data-toggle="tooltip" title="large">
-                        l
-                      </span>
-                      <span
-                        class="size"
-                        data-toggle="tooltip"
-                        title="xtra large"
-                      >
-                        xl
-                      </span>
-                    </h5>
-                    <h5 class="colors">
-                      colors:
-                      <span
-                        class="color orange not-available"
-                        data-toggle="tooltip"
-                        title="Not In store"
-                      ></span>
-                      <span class="color green"></span>
-                      <span class="color blue"></span>
-                    </h5>
-                    <div class="action">
-                      <button class="add-to-cart btn btn-default" type="button">
-                        add to cart
-                      </button>
-                      <button class="like btn btn-default" type="button">
-                        <span class="fa fa-heart"></span>
-                      </button>
+                    <div class="details col-md-6">
+                      <h3 class="product-title">men's shoes fashion</h3>
+                      <div class="rating">
+                        <div class="stars">
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star"></span>
+                          <span class="fa fa-star"></span>
+                        </div>
+                        <span class="review-no">41 reviews</span>
+                      </div>
+                      <p class="product-description">
+                        Suspendisse quos? Tempus cras iure temporibus? Eu
+                        laudantium cubilia sem sem! Repudiandae et! Massa
+                        senectus enim minim sociosqu delectus posuere.
+                      </p>
+                      <h4 class="price">
+                        current price: <span>$180</span>
+                      </h4>
+                      <p class="vote">
+                        <strong>91%</strong> of buyers enjoyed this product!{" "}
+                        <strong>(87 votes)</strong>
+                      </p>
+                      <h5 class="sizes">
+                        sizes:
+                        <span class="size" data-toggle="tooltip" title="small">
+                          s
+                        </span>
+                        <span class="size" data-toggle="tooltip" title="medium">
+                          m
+                        </span>
+                        <span class="size" data-toggle="tooltip" title="large">
+                          l
+                        </span>
+                        <span
+                          class="size"
+                          data-toggle="tooltip"
+                          title="xtra large"
+                        >
+                          xl
+                        </span>
+                      </h5>
+                      <h5 class="colors">
+                        colors:
+                        <span
+                          class="color orange not-available"
+                          data-toggle="tooltip"
+                          title="Not In store"
+                        ></span>
+                        <span class="color green"></span>
+                        <span class="color blue"></span>
+                      </h5>
+                      <div class="action">
+                        <button
+                          class="add-to-cart btn btn-default"
+                          type="button"
+                        >
+                          add to cart
+                        </button>
+                        <button class="like btn btn-default" type="button">
+                          <span class="fa fa-heart"></span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
