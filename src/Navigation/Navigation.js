@@ -156,9 +156,13 @@ function Navigation() {
             </h4>
             <div className="dropdown">
               <ul>
-                {getCategory.map((cate) => (
+                {/* {getCategory.map((cate) => (
                   <li key={cate.id}>{cate.categoryName}</li>
-                ))}
+                ))} */}
+                <li>Yến hộp</li>
+                <li>Yến chưng</li>
+
+
               </ul>
             </div>
           </Link>
