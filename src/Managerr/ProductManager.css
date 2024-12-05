@@ -103,3 +103,293 @@
     background-color: #603719;
     cursor: pointer;
 }
+
+/**/
+.modal-product {
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.modal-product.open {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+.modal-product-header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  background-color: #603719;
+  color: #fff4e8;
+  height: 55px !important;
+  width: 100%;
+}
+
+.modal-product-form {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fbf9f8;
+  padding: 20px;
+}
+
+.modal-product-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  padding: 12px;
+  font-size: 30px;
+}
+
+.modal-product-close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.modal-product-body {
+  padding: 16px;
+}
+
+.modal-product-label {
+  display: block;
+  font-size: 18px !important;
+  margin-bottom: 8px;
+  font-weight: 500;
+  width: 200px;
+}
+
+.modal-product-input {
+  border: solid #ccc;
+  border-radius: 7px;
+  width: 100%;
+  padding: 5px !important;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.modal-product-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.modal-product-body-left,
+.modal-product-body-right {
+  width: 45%;
+}
+
+.modal-product-body-left .modal-product-label,
+.modal-product-body-right .modal-product-label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+.modal-product-body-left .modal-product-input,
+.modal-product-body-right .modal-product-input {
+  border: solid #ccc;
+  border-radius: 7px;
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.modal-product-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ #create-pro {
+  background-color: #603719;
+  color: #fff;
+  border: none !important;
+  width: 100%;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  height: 45px;
+} 
+.modal-product-closee {
+  position: absolute;
+  color: #fff4e8;
+  z-index: 10000;
+  right: 5px;
+  top: 5px;
+  font-size: 25px;
+}
+.closeAddxxx:hover{
+  opacity: 0.6;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .modal-product-form {
+    flex-direction: column;
+  }
+
+  .modal-product-left,
+  .modal-product-right {
+    width: 100% !important;
+  }
+}
+.modal-product-left{
+  margin-right: 60px;
+}
+.modal-product-right {
+  padding-right: 10px !important;
+}
+
+
+.modal-product-update{
+
+}
+.modal-product-update {
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
+}
+
+.modal-product-update.open {
+  display: flex;
+  opacity: 1;
+  visibility: visible;
+}
+.modal-product-update-header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: relative;
+  background-color: #603719;
+  color: #fff4e8;
+  height: 55px !important;
+  width: 100%;
+}
+
+.modal-product-update-form {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fbf9f8;
+  padding: 20px;
+}
+
+.modal-product-update-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  padding: 12px;
+  font-size: 30px;
+}
+
+.modal-product-update-close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.modal-product-update-body {
+  padding: 16px;
+}
+
+.modal-product-update-label {
+  display: block;
+  font-size: 18px !important;
+  margin-bottom: 8px;
+  font-weight: 500;
+  width: 200px;
+}
+
+.modal-product-update-input {
+  border: solid #ccc;
+  border-radius: 7px;
+  width: 100%;
+  padding: 5px !important;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.modal-product-update-body {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.modal-product-update-body-left,
+.modal-product-update-body-right {
+  width: 45%;
+}
+
+.modal-product-update-body-left .modal-product-update-label,
+.modal-product-update-body-right .modal-product-update-label {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+.modal-product-update-body-left .modal-product-update-input,
+.modal-product-update-body-right .modal-product-update-input {
+  border: solid #ccc;
+  border-radius: 7px;
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.modal-product-update-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.modal-product-update-closee {
+  position: absolute;
+  color: #fff4e8;
+  z-index: 10000;
+  right: 5px;
+  top: 5px;
+  font-size: 25px;
+}
+
+@media (max-width: 768px) {
+  .modal-product-update-form {
+    flex-direction: column;
+  }
+
+  .modal-product-update-left,
+  .modal-product-update-right {
+    width: 100% !important;
+  }
+}
+.modal-product-update-left{
+  margin-right: 60px;
+}
+.modal-product-update-right {
+  padding-right: 10px !important;
+}
