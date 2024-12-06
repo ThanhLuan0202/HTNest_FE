@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 function Sidebar() {
 
-  const [activeTab, setActiveTab] = useState("Báo Cáo Cửa Hàng");
+  const [activeTab, setActiveTab] = useState("Sản phẩm");
   const [info, setInfo] = useState({});
 
   const fetchInfo = () => {
@@ -64,26 +64,26 @@ function Sidebar() {
             
             
             
-            <li className={`${activeTab === "Quản Lý Sản Phẩm" ? "sidebarActive" : ""}`} onClick={() => handleClick("Quản Lý Sản Phẩm")}>
-              <Link to="/product-manager">
+            <li className={`${activeTab === "Sản Phẩm" ? "sidebarActive" : ""}`} onClick={() => handleClick("Sản Phẩm")}>
+              <Link to="/managerr/product-manager">
                 <i class="fas fa-shopping-bag"></i><p>Sản Phẩm</p>
               </Link>
             </li>
            
-            <li className={`${activeTab === "Quản Lý Khách Hàng" ? "sidebarActive" : ""}`} onClick={() => handleClick("Quản Lý Khách Hàng")}>
-              <Link to="/manager/customer">
+            <li className={`${activeTab === "Khách Hàng" ? "sidebarActive" : ""}`} onClick={() => handleClick("Khách Hàng")}>
+              <Link to="guest">
                 <i className="fas fa-users"></i><p>Khách Hàng</p>
               </Link>
             </li>
             
-            <li className={`${activeTab === "Quản Lý Danh Mục" ? "sidebarActive" : ""}`} onClick={() => handleClick("Quản Lý Danh Mục")}>
-              <Link to="/manager/category">
+            <li className={`${activeTab === "Danh Mục" ? "sidebarActive" : ""}`} onClick={() => handleClick("Danh Mục")}>
+              <Link to="category">
                 <i class="fas fa-bars"></i><p>Danh Mục</p>
               </Link>
             </li>
             
-            <li className={`${activeTab === "Quản Lý Thể Loại" ? "sidebarActive" : ""}`} onClick={() => handleClick("Quản Lý Thể Loại")}>
-              <Link to="/manager/gold">
+            <li className={`${activeTab === "Thể Loại" ? "sidebarActive" : ""}`} onClick={() => handleClick("Thể Loại")}>
+              <Link to="gold">
               <i class="fas fa-mortar-pestle"></i><p>Thể Loại</p>
               </Link>
             </li>

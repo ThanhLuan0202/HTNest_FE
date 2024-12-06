@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./Managerr.css";
 // import Customer from "./Customer";
 import Product from "./ProductManager";
+import Guest from "./Guest";
 // import Category from "./Category";
 
 
@@ -16,7 +17,9 @@ function Managerr() {
       </div>
       <div className="col align-self-start">
         <Routes>
-          <Route path="/*" element={<Product />} />
+          <Route path="/product-manager" element={<Product />} />
+          <Route path="/guest" element={<Guest />} />
+
         </Routes>
       </div>
     </div>

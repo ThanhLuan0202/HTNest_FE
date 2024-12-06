@@ -15,7 +15,39 @@ function ProductManager() {
   const [style, setStyle] = useState([]);
   const token = localStorage.getItem("token");
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [clickLogout, setClickLogout] = useState(false);
 
+  useEffect(() => {
+    if (clickLogout) {
+      const logout = async () => {
+        try {
+          const response = await fetch(`${config.API_ROOT}/Authen/logout`, {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Gửi token nếu cần
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Logout failed");
+          }
+
+          // Xử lý thành công
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          toast.success("Đăng xuất thành công");
+          window.location.href = "/"; // Redirect về trang chủ
+        } catch (error) {
+          console.error("Logout error:", error);
+          toast.error("Đăng xuất không thành công, vui lòng thử lại!");
+        } finally {
+          setClickLogout(false); // Reset trạng thái
+        }
+      };
+
+      logout();
+    }
+  }, [clickLogout]);
   useEffect(() => {
     fetch(`${config.API_ROOT}/Style`, {
       headers: {
@@ -84,6 +116,8 @@ function ProductManager() {
     setShowModal(true);
   };
   const showModelUpdate = (product) => {
+    console.log("check sản phẩm: " + product);
+
     setSelectedProduct(product);
     setShowModalUpdate(true);
   };
@@ -112,24 +146,24 @@ function ProductManager() {
   const addProduct = async (event) => {
     event.preventDefault();
     console.log("ccc" + token);
-    console.log("code :" + event.target.categoryId.value);
+    console.log("code :" + event.target.productCode.value);
     category.forEach((item, index) => {
       console.log(`Category ${index}:`, item);
     });
-
+    const formElements = event.target.elements;
     const productData = {
-      productCode: event.target.productCode.value,
-      productName: event.target.productName.value,
-      description: event.target.description.value,
-      quantityStock: event.target.quantityStock.value,
-      discount: event.target.discount.value,
-      image: event.target.image.files[0],
-      ingredient: event.target.ingredient.value,
-      warning: event.target.warning.value,
-      categoryId: event.target.categoryId.value,
-      price: event.target.price.value,
-      styleId: event.target.StyleId.value,
-      volume: event.target.Volume.value,
+      productCode: formElements.productCode?.value || "",
+      productName: formElements.productName?.value || "",
+      description: formElements.description?.value || "",
+      quantityStock: formElements.quantityStock?.value || 0,
+      discount: formElements.discount?.value || 0,
+      image: formElements.image?.files[0] || null,
+      ingredient: formElements.ingredient?.value || "",
+      warning: formElements.warning?.value || "",
+      categoryId: formElements.categoryID?.value || "",
+      price: formElements.price?.value || 0,
+      styleId: formElements.StyleId?.value || "",
+      volume: formElements.Volume?.value || 0,
     };
 
     try {
@@ -259,10 +293,17 @@ function ProductManager() {
     setSelectedProduct(product); // Lưu thông tin sản phẩm vào state
     setShowModalUpdate(true); // Hiển thị modal
   };
-
+  const handleLogoutClick = () => {
+    setClickLogout(true);
+  };
   /*--------*/
   return (
     <div className="productManager">
+      <i
+        class="fas fa-sign-out-alt logout-in-product"
+        style={{ fontSize: "23px", cursor: "pointer" }}
+        onClick={handleLogoutClick}
+      ></i>
       <div className="product-chill">
         <p className="title-table">Danh sách sản phẩm</p>
         <div className="search">
@@ -299,7 +340,7 @@ function ProductManager() {
                 <td>{post.productName}</td>
                 <td>
                   <img
-                    style={{ width: "100px" }}
+                    style={{ width: "50px", height: "50px" }}
                     className="product-img-luan"
                     src={post.image}
                     alt="{post.productName}"
@@ -338,9 +379,8 @@ function ProductManager() {
           {pageNumbers.map((pageNumber) => (
             <button
               key={pageNumber}
-              className={`pgn-product-manager btn btn-primary ${
-                currentPage === pageNumber ? "active" : ""
-              }`}
+              className={`pgn-product-manager btn btn-primary ${currentPage === pageNumber ? "active" : ""
+                }`}
               onClick={() => handlePageChange(pageNumber)}
             >
               {pageNumber}
@@ -487,13 +527,13 @@ function ProductManager() {
                         className="modal-product-image-input"
                         id="image"
                         name="image"
-                        // onChange={(event) => {
-                        //   formik.setFieldValue(
-                        //     "image",
-                        //     event.currentTarget.files[0]
-                        //   );
-                        // }}
-                        // onBlur={formik.handleBlur}
+                      // onChange={(event) => {
+                      //   formik.setFieldValue(
+                      //     "image",
+                      //     event.currentTarget.files[0]
+                      //   );
+                      // }}
+                      // onBlur={formik.handleBlur}
                       />
                     </div>
                   </div>
@@ -789,13 +829,13 @@ function ProductManager() {
                         id="image"
                         name="image"
 
-                        // onChange={(event) => {
-                        //   formik.setFieldValue(
-                        //     "image",
-                        //     event.currentTarget.files[0]
-                        //   );
-                        // }}
-                        // onBlur={formik.handleBlur}
+                      // onChange={(event) => {
+                      //   formik.setFieldValue(
+                      //     "image",
+                      //     event.currentTarget.files[0]
+                      //   );
+                      // }}
+                      // onBlur={formik.handleBlur}
                       />
                     </div>
                   </div>

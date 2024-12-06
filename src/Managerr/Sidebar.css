@@ -47,7 +47,7 @@ body {
   z-index: 1000;
   position: absolute;
   left: 250px;
-  width: 324px;
+  width: 280px !important;
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
@@ -67,7 +67,7 @@ body {
     padding-top: -18px;
     margin-bottom: -8px;
     height: 1px;
-    width: 280px;
+    width: 250px;
     margin-left: 14px;
     background-color: #C6DEFD;
     opacity: 0.4;
@@ -136,7 +136,7 @@ posbh{
   background-color: #fff4e8;
   color: #603719 !important;
   border-radius: 10px;
-  width: 294px;
+  width: 242px;
   margin-left: 15px;
 }
 

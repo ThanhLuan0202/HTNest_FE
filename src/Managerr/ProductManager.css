@@ -1,8 +1,12 @@
 .productManager {
+  position: relative;
   background-color: #fbf9f8;
   height: auto;
   width: 100%;
-  margin-left: 70px;
+  margin-left: 30px;
+}
+.product-chill{
+  margin-left: 6px;
 }
 .tableProduct {
   border-style: solid;
@@ -392,4 +396,11 @@
 }
 .modal-product-update-right {
   padding-right: 10px !important;
+}
+.logout-in-product{
+  position: absolute;
+  right: 110px;
+  top: 20px;
+  font-size: 30px !important;
+  color: #603719;
 }

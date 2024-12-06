@@ -49,6 +49,7 @@ function Login() {
       // Kiểm tra nếu là role "manager", chuyển hướng đến trang quản lý
       if (userRole === "Manager") {
         navigate("/manager"); // Điều hướng đến trang quản lý
+        window.location.reload();
       } else {
         navigate("/"); // Nếu không phải manager, chuyển đến trang chính
       }
