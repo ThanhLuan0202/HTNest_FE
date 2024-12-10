@@ -17,7 +17,7 @@ function Managerr() {
       </div>
       <div className="col align-self-start">
         <Routes>
-          <Route path="/product-manager" element={<Product />} />
+          <Route path="/*" element={<Product />} />
           <Route path="/guest" element={<Guest />} />
 
         </Routes>

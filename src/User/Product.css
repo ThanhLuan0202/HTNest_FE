@@ -254,12 +254,12 @@ img {
     margin-left: 20px; }
 
 .add-to-cart, .like {
-  background: #ff9f1a;
+  background: #8b4d1a !important;
   padding: 1.2em 1.5em;
   border: none;
   text-transform: UPPERCASE;
   font-weight: bold;
-  color: #fff;
+  color: #fff !important;
   -webkit-transition: background .3s ease;
           transition: background .3s ease; }
   .add-to-cart:hover, .like:hover {
@@ -330,4 +330,17 @@ img {
 }
 .button-revious{
   width: 80px !important;
+}
+.price-detail-product{
+  margin-top: 60px;
+}
+.price-detail-product span{
+  color: #C28E68 ;
+}
+.details p{
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+.card-text i{
+  color: red;
 }

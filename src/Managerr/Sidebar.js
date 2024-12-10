@@ -65,7 +65,7 @@ function Sidebar() {
             
             
             <li className={`${activeTab === "Sản Phẩm" ? "sidebarActive" : ""}`} onClick={() => handleClick("Sản Phẩm")}>
-              <Link to="/managerr/product-manager">
+              <Link to="productManager">
                 <i class="fas fa-shopping-bag"></i><p>Sản Phẩm</p>
               </Link>
             </li>

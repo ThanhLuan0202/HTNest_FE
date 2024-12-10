@@ -9,6 +9,8 @@ function Product() {
   const [showDetail, setShowDetail] = useState(false);
   const [getProduct, setGetProduct] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [productDetail, setProductDetail] = useState([]);
+
   const itemsPerPage = 9;
 
   const [editingPost, setEditingPost] = useState([]);
@@ -31,6 +33,35 @@ function Product() {
   // for (let i = 1; i <= totalPages; i++) {
   //   pageNumbers.push(i);
   // }
+  const showProductDetail = async (product) => {
+    setShowDetail(true);
+    setProductDetail(product);
+  };
+  const addToCard = async (productId) => {
+    const apiUrl = "https://your-api-endpoint.com/cart"; // Thay bằng endpoint thực tế của bạn
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Nếu API yêu cầu token
+        },
+        body: JSON.stringify(productId),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to add product to cart: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Product added to cart successfully:", data);
+      alert("Product added to cart successfully!");
+    } catch (error) {
+      console.error("Error adding product to cart:", error);
+      alert("Failed to add product to cart. Please try again!");
+    }
+  };
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -68,8 +99,6 @@ function Product() {
     }
   };
 
- 
-
   return (
     <div className="body">
       <div class="container py-4">
@@ -99,7 +128,10 @@ function Product() {
                   </p>
                   <div className="d-flex">
                     <p className="text-danger fw-bold ">{product.price} đ</p>
-                    <button className="btn btn-outline-secondary button-buy">
+                    <button
+                      className="btn btn-outline-secondary button-buy"
+                      onClick={() => showProductDetail(product)}
+                    >
                       Chi tiết
                     </button>
                   </div>
@@ -158,22 +190,13 @@ function Product() {
                   <div class="preview col-md-6">
                     <div class="preview-pic tab-content">
                       <div class="tab-pane active" id="pic-1">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-2">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-3">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-4">
-                        <img src={yenHopImage} />
-                      </div>
-                      <div class="tab-pane" id="pic-5">
-                        <img src={yenHopImage} />
+                        <img
+                          src={productDetail.image}
+                          style={{ width: "500px" }}
+                        />
                       </div>
                     </div>
-                    <ul class="preview-thumbnail nav nav-tabs">
+                    {/* <ul class="preview-thumbnail nav nav-tabs">
                       <li class="active">
                         <a data-target="#pic-1" data-toggle="tab">
                           <img src={yenHopImage} />
@@ -199,67 +222,65 @@ function Product() {
                           <img src={yenHopImage} />
                         </a>
                       </li>
-                    </ul>
+                    </ul> */}
                   </div>
                   <div class="details col-md-6">
-                    <h3 class="product-title">men's shoes fashion</h3>
+                    <h3 class="product-title">{productDetail.productName}</h3>
                     <div class="rating">
                       <div class="stars">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
                       </div>
-                      <span class="review-no">41 reviews</span>
                     </div>
-                    <p class="product-description">
-                      Suspendisse quos? Tempus cras iure temporibus? Eu
-                      laudantium cubilia sem sem! Repudiandae et! Massa senectus
-                      enim minim sociosqu delectus posuere.
+
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Mô tả:{" "}
+                      </span>
+                      {productDetail.description}
                     </p>
-                    <h4 class="price">
-                      current price: <span>$180</span>
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Thành phần:{" "}
+                      </span>
+                      {productDetail.ingredient}
+                    </p>
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Hàm lượng yến:{" "}
+                      </span>
+                      {productDetail.volume}g tổ yến
+                    </p>
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Cảnh báo:{" "}
+                      </span>
+                      {productDetail.warning}g tổ yến
+                    </p>
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Hạn sử dụng:{" "}
+                      </span>
+                      Hiện in trên bao bì sản phẩm
+                    </p>
+                    <p className="card-text text-muted fw-bold">
+                      <span>
+                        <i class="fas fa-minus"></i> Hướng dẫn bảo quản:{" "}
+                      </span>
+                      Bảo quản nơi khô thoáng, tránh ánh nắng mặt trời hoặc ngăn
+                      mát tủ lạnh.
+                    </p>
+
+                    <h4 class="price price-detail-product">
+                      Giá tiền: <span>{productDetail.price} VND</span>
                     </h4>
-                    <p class="vote">
-                      <strong>91%</strong> of buyers enjoyed this product!{" "}
-                      <strong>(87 votes)</strong>
-                    </p>
-                    <h5 class="sizes">
-                      sizes:
-                      <span class="size" data-toggle="tooltip" title="small">
-                        s
-                      </span>
-                      <span class="size" data-toggle="tooltip" title="medium">
-                        m
-                      </span>
-                      <span class="size" data-toggle="tooltip" title="large">
-                        l
-                      </span>
-                      <span
-                        class="size"
-                        data-toggle="tooltip"
-                        title="xtra large"
-                      >
-                        xl
-                      </span>
-                    </h5>
-                    <h5 class="colors">
-                      colors:
-                      <span
-                        class="color orange not-available"
-                        data-toggle="tooltip"
-                        title="Not In store"
-                      ></span>
-                      <span class="color green"></span>
-                      <span class="color blue"></span>
-                    </h5>
+
                     <div class="action">
-                      <button class="add-to-cart btn btn-default" type="button">
-                        add to cart
-                      </button>
-                      <button class="like btn btn-default" type="button">
-                        <span class="fa fa-heart"></span>
+                      <button class="add-to-cart btn btn-default" type="button" onClick={() => addToCard(productDetail.productCode)}>
+                        Thêm vào giỏ hàng
                       </button>
                     </div>
                   </div>

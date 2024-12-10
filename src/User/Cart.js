@@ -5,6 +5,53 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
 
 function Cart() {
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [quantity, setQuantity] = useState(0);
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchCartItems = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "https://htnest-emd3hyerfzc8edh5.southeastasia-01.azurewebsites.net/api/Cart/Get-Cart",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Thay bằng token thật của bạn
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Không thể tải dữ liệu giỏ hàng.");
+      }
+
+      const data = await response.json();
+      setCartItems(data.cartItems || []);
+      setTotalPrice(data.totalPrice || 0);
+      setQuantity(data.cartItems.totalItems);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCartItems();
+  }, []);
+
+  // if (loading) {
+  //   return <div>Đang tải dữ liệu giỏ hàng...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Lỗi: {error}</div>;
+  // }
+
   return (
     <div>
       <div class="cart-wrap">
@@ -24,124 +71,54 @@ function Cart() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="display-flex align-center">
-                          <div class="img-product">
-                            <img
-                              src={yenHopImage}
-                              alt=""
-                              class="mCS_img_loaded"
-                            />
+                    {cartItems.map((item) => (
+                      <tr key={item.id}>
+                        <td>
+                          <div className="display-flex align-center">
+                            <div className="img-product">
+                              <img
+                                src={item.image || yenHopImage} // Nếu không có hình ảnh, dùng ảnh mặc định
+                                alt={item.name}
+                                className="mCS_img_loaded"
+                              />
+                            </div>
+                            <div className="name-product">
+                              {item.description}
+                            </div>
+                            {/* <div className="price">
+                              {item.price.toLocaleString()} đ
+                            </div> */}
                           </div>
-                          <div class="name-product">Yến hộp</div>
-                          <div class="price">1.000.000</div>
-                        </div>
-                      </td>
-                      <td class="product-count">
-                        <form action="#" class="count-inlineflex">
-                          <div class="qtyminus">-</div>
-                          <input
-                            type="text"
-                            name="quantity"
-                            value="1"
-                            class="qty"
-                          />
-                          <div class="qtyplus">+</div>
-                        </form>
-                      </td>
-                      <td>
-                        <div class="total">1.000.000</div>
-                      </td>
-                      <td>
-                        <a href="#" title="">
-                          <img
-                            src="images/icons/delete.png"
-                            alt=""
-                            class="mCS_img_loaded"
-                          />
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="display-flex align-center">
-                          <div class="img-product">
-                            <img
-                              src={yenHopImage}
-                              alt=""
-                              class="mCS_img_loaded"
+                        </td>
+                        <td className="product-count">
+                          <form className="count-inlineflex">
+                            <div className="qtyminus">-</div>
+                            <input
+                              type="text"
+                              name="quantity"
+                              value={quantity}
+                              className="qty"
+                              readOnly
                             />
+                            <div className="qtyplus">+</div>
+                          </form>
+                        </td>
+                        <td>
+                          <div className="total">
+                            {totalPrice} đ
                           </div>
-                          <div class="name-product">Yến hộp</div>
-                          <div class="price">1.000.000</div>
-                        </div>
-                      </td>
-                      <td class="product-count">
-                        <form action="#" class="count-inlineflex">
-                          <div class="qtyminus">-</div>
-                          <input
-                            type="text"
-                            name="quantity"
-                            value="1"
-                            class="qty"
-                          />
-                          <div class="qtyplus">+</div>
-                        </form>
-                      </td>
-                      <td>
-                        <div class="total">1.000.000</div>
-                      </td>
-                      <td>
-                        <a href="#" title="">
-                          <img
-                            src="images/icons/delete.png"
-                            alt=""
-                            class="mCS_img_loaded"
-                          />
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="display-flex align-center">
-                          <div class="img-product">
-                            <img
-                              src={yenHopImage}
-                              alt=""
-                              class="mCS_img_loaded"
-                            />
-                          </div>
-                          <div class="name-product">Yến hộp</div>
-                          <div class="price">1.000.000</div>
-                        </div>
-                      </td>
-                      <td class="product-count">
-                        <form action="#" class="count-inlineflex">
-                          <div class="qtyminus">-</div>
-                          <input
-                            type="text"
-                            name="quantity"
-                            value="1"
-                            class="qty"
-                          />
-                          <div class="qtyplus">+</div>
-                        </form>
-                      </td>
-                      <td>
-                        <div class="total">1.000.000</div>
-                      </td>
-                      <td>
-                        <a href="#" title="">
-                          <img
-                            src="images/icons/delete.png"
-                            alt=""
-                            class="mCS_img_loaded"
-                          />
-                        </a>
-                      </td>
-                    </tr>
-                    
+                        </td>
+                        <td>
+                          <button
+                            onClick={() => {
+                              /* Hàm xóa sản phẩm ở đây */
+                            }}
+                          >
+                            Xóa
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
                 <div class="coupon-box">
@@ -181,17 +158,21 @@ function Cart() {
                     </tbody>
                   </table>
                   <div class="btn-cart-totals">
-                <Link to = "/product">
-                    <a href="" class="update round-black-btn" title="">
-                      Thêm sản phẩm khác
-                    </a>
-                </Link>
-                
-                    <a href="/checkout" class="checkout round-black-btn" title="">
+                    <Link to="/product">
+                      <a href="" class="update round-black-btn" title="">
+                        Thêm sản phẩm khác
+                      </a>
+                    </Link>
+
+                    <a
+                      href="/checkout"
+                      class="checkout round-black-btn"
+                      title=""
+                    >
                       Hoàn thành thanh toán
                     </a>
-                
-                {/* <div>
+
+                    {/* <div>
                       <marquee>8===D</marquee>
                 </div> */}
                   </div>
