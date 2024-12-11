@@ -11,7 +11,6 @@ import yenHopImage from "../Icons/image/yenchung.jpg";
 import yenset from "../Icons/image/set.jpg";
 import yenhop from "../Icons/image/yenhop.jpg";
 
-
 function Home() {
   const images = [bgr1, bgr2, bgr3];
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,7 +97,7 @@ function Home() {
         </div>
       </div>
       <div className="content-tv d-flex">
-        <div className="left-home">
+        <div className="left-home lhct">
           <h2 class="title-linear" style={{ textAlign: "justify" }}>
             Thu hoạch & phân phối
             <br />
@@ -110,9 +109,16 @@ function Home() {
               dược liệu quý hiếm, dược cổ truyền dân tộc, đem đến giải pháp chăm
               sóc sức khỏe toàn diện.
             </li>
+            <li style={{ textAlign: "justify" }}>
+              Với phương châm "từ thiên nhiên đến sức khỏe", chúng tôi cam kết
+              cung cấp sản phẩm chất lượng, được chế biến tỉ mỉ và bảo tồn
+              nguyên vẹn giá trị dinh dưỡng, giúp cải thiện sức khỏe, nâng cao
+              miễn dịch và hỗ trợ phòng ngừa các bệnh lý mãn tính, mang lại sự
+              an tâm và bền vững cho mỗi người sử dụng.
+            </li>
           </ul>
         </div>
-        <div className="right-home">
+        <div className="right-home rhct">
           <img
             src={nho}
             style={{
@@ -136,110 +142,81 @@ function Home() {
         <h1 className="title-product-top">Sản phẩm nổi bật</h1>
         <div class="container py-4">
           <div class="row g-4">
-            
-              <div className="col-md-4" >
-                <div className="card h-100 shadow-sm cardbody">
-                  <img
-                    src={yenHopImage}
-                    className="card-img-top image-product"
-                    
-                  />
-                  <div className="button-buy-in-image">
-                    <i className="fas fa-shopping-cart logo-buy-in-image"></i>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title fw-bold mt-2">
-                      ssss
-                    </h5>
-                    <p className="card-text text-muted fw-bold">
-                      <span>Thành phần: </span>
-                      ssss
-                    </p>
-                    <p className="card-text text-muted fw-bold">
-                      <span> Hàm lượng yến: </span>
-                      ssssss
-                    </p>
-                    <div className="d-flex">
-                      <p className="text-danger fw-bold ">1111111 đ</p>
-                      <button
-                        className="btn btn-outline-secondary button-buy"
-                        
-                      >
-                        Chi tiết
-                      </button>
-                    </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={yenHopImage} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">ssss</h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    ssss
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    ssssss
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1111111 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4" >
-                <div className="card h-100 shadow-sm cardbody">
-                  <img
-                    src={yenhop}
-                    className="card-img-top image-product"
-                    
-                  />
-                  <div className="button-buy-in-image">
-                    <i className="fas fa-shopping-cart logo-buy-in-image"></i>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title fw-bold mt-2">
-                      ssss
-                    </h5>
-                    <p className="card-text text-muted fw-bold">
-                      <span>Thành phần: </span>
-                      ssss
-                    </p>
-                    <p className="card-text text-muted fw-bold">
-                      <span> Hàm lượng yến: </span>
-                      ssssss
-                    </p>
-                    <div className="d-flex">
-                      <p className="text-danger fw-bold ">1111111 đ</p>
-                      <button
-                        className="btn btn-outline-secondary button-buy"
-                        
-                      >
-                        Chi tiết
-                      </button>
-                    </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={yenhop} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">ssss</h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    ssss
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    ssssss
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1111111 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
                   </div>
                 </div>
               </div>
-              <div className="col-md-4" >
-                <div className="card h-100 shadow-sm cardbody">
-                  <img
-                    src={yenset}
-                    className="card-img-top image-product"
-                    
-                  />
-                  <div className="button-buy-in-image">
-                    <i className="fas fa-shopping-cart logo-buy-in-image"></i>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title fw-bold mt-2">
-                      ssss
-                    </h5>
-                    <p className="card-text text-muted fw-bold">
-                      <span>Thành phần: </span>
-                      ssss
-                    </p>
-                    <p className="card-text text-muted fw-bold">
-                      <span> Hàm lượng yến: </span>
-                      ssssss
-                    </p>
-                    <div className="d-flex">
-                      <p className="text-danger fw-bold ">1111111 đ</p>
-                      <button
-                        className="btn btn-outline-secondary button-buy"
-                        
-                      >
-                        Chi tiết
-                      </button>
-                    </div>
+            </div>
+            <div className="col-md-4">
+              <div className="card h-100 shadow-sm cardbody">
+                <img src={yenset} className="card-img-top image-product" />
+                <div className="button-buy-in-image">
+                  <i className="fas fa-shopping-cart logo-buy-in-image"></i>
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title fw-bold mt-2">ssss</h5>
+                  <p className="card-text text-muted fw-bold">
+                    <span>Thành phần: </span>
+                    ssss
+                  </p>
+                  <p className="card-text text-muted fw-bold">
+                    <span> Hàm lượng yến: </span>
+                    ssssss
+                  </p>
+                  <div className="d-flex">
+                    <p className="text-danger fw-bold ">1111111 đ</p>
+                    <button className="btn btn-outline-secondary button-buy">
+                      Chi tiết
+                    </button>
                   </div>
                 </div>
               </div>
-            
+            </div>
           </div>
         </div>
       </div>

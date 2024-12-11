@@ -116,3 +116,9 @@
   background-position: center; /* Căn giữa ảnh trong div */
   background-repeat: no-repeat; /* Ngừng lặp lại ảnh nếu nó nhỏ hơn kích thước div */
 }
+.lhct{
+  width: 800px;
+}
+.rhct{
+  margin-left: 80px;
+}
