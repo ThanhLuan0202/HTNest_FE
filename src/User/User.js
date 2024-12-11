@@ -1,18 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import "./User.css";
 import setImage from "../Icons/image/set.jpg";
 import toYenImage from "../Icons/image/yenhop2.jpg";
 import toYen2Image from "../Icons/image/yenhop.jpg";
 import yenHopImage from "../Icons/image/yenchung.jpg";
-import bgr from "../Icons/image/background.png";
+import bgr1 from "../Icons/image/background.png";
+import bgr2 from "../Icons/image/anh2.jpg";
+import bgr3 from "../Icons/image/anh1.jpg";
 
 
 function User() {
+  const images = [bgr1, bgr2, bgr3];
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Tự động chuyển ảnh sau mỗi 3 giây
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000); // Thay đổi thời gian chuyển ảnh (3 giây)
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div>
       <div className="body">
         <div className="body-script">
-          <img className="img-bgr" src={bgr} />
+        <button className="prev-btn" onClick={prevSlide}>❮</button>
+      <img className="img-slide" src={images[currentIndex]} alt="Slide" />
+      <button className="next-btn" onClick={nextSlide}>❯</button>
         </div>
         <div className="body-product">
           <div className="div-up-script ">
