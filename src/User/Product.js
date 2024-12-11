@@ -116,7 +116,7 @@ function Product() {
                 </div>
                 <div className="card-body">
                   <h5 className="card-title fw-bold mt-2">
-                    {product.ingredient}
+                    {product.productName}
                   </h5>
                   <p className="card-text text-muted fw-bold">
                     <span>Thành phần: </span>
