@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import "./User.css";
 import setImage from "../Icons/image/set.jpg";
 import toYenImage from "../Icons/image/yenhop2.jpg";
@@ -7,7 +7,6 @@ import yenHopImage from "../Icons/image/yenchung.jpg";
 import bgr1 from "../Icons/image/background.png";
 import bgr2 from "../Icons/image/anh2.jpg";
 import bgr3 from "../Icons/image/anh1.jpg";
-
 
 function User() {
   const images = [bgr1, bgr2, bgr3];
@@ -35,9 +34,13 @@ function User() {
     <div>
       <div className="body">
         <div className="body-script">
-        <button className="prev-btn" onClick={prevSlide}>❮</button>
-      <img className="img-slide" src={images[currentIndex]} alt="Slide" />
-      <button className="next-btn" onClick={nextSlide}>❯</button>
+          <button className="prev-btn" onClick={prevSlide}>
+            ❮
+          </button>
+          <img className="img-slide" src={images[currentIndex]} alt="Slide" />
+          <button className="next-btn" onClick={nextSlide}>
+            ❯
+          </button>
         </div>
         <div className="body-product">
           <div className="div-up-script ">

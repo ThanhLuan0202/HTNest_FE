@@ -14,7 +14,30 @@ function Navigation() {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [clickLogout, setClickLogout] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [getProduct, setGetProduct] = useState([]);
+  const [searchValue, setSearchValue] = useState(""); // Lưu giá trị nhập vào
+  const [filteredProducts, setFilteredProducts] = useState([]); // Lưu danh sách sản phẩm khớp
 
+  /*search*/
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+
+    if (value.trim() === "") {
+      setFilteredProducts([]); // Nếu không có giá trị thì xoá kết quả
+      return;
+    }
+
+    // Lọc sản phẩm theo ký tự nhập
+    const filtered = getProduct.filter((product) =>
+      product.productName.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setFilteredProducts(filtered); // Cập nhật danh sách sản phẩm khớp
+  };
+
+  /*----------*/
   const handleLogoutClick = () => {
     setClickLogout(true);
   };
@@ -102,7 +125,29 @@ function Navigation() {
   useEffect(() => {
     fetchCategories();
   }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${config.API_ROOT}/Product`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setGetProduct(data); // Cập nhật danh sách sản phẩm
+      } catch (error) {
+        console.error("Fetch Error:", error.message);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <div>
       <div className="navigation-info">
@@ -117,6 +162,23 @@ function Navigation() {
 
         <div className="right">
           <i className="fas fa-search icon-find"></i>
+
+          <div className="input-search">
+            <input
+              type="text"
+              value={searchValue}
+              onChange={handleSearchChange}
+              placeholder="Tìm kiếm sản phẩm..."
+            />
+            {filteredProducts.length > 0 && (
+              <ul className="dropdown-search">
+                {filteredProducts.map((product) => (
+                  <li key={product.id}>{product.productName}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+
           <Link to="/cart">
             <i className="fas fa-shopping-cart icon-shopping"></i>
           </Link>
@@ -129,15 +191,12 @@ function Navigation() {
             )}
           </Link>
           {avatar ? (
-              <i
+            <i
               class="fas fa-sign-out-alt"
               style={{ fontSize: "23px", cursor: "pointer" }}
               onClick={handleLogoutClick}
             ></i>
-            ) : (
-              null
-            )}
-          
+          ) : null}
         </div>
       </div>
 
@@ -147,6 +206,9 @@ function Navigation() {
           <h2>HT Nest</h2>
         </div>
         <div className="right">
+          <Link to="/home" className="link">
+            <h4>TRANG CHỦ</h4>
+          </Link>
           <Link to="/user" className="link">
             <h4>GIỚI THIỆU</h4>
           </Link>

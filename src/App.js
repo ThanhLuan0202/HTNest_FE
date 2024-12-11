@@ -12,7 +12,6 @@ import Managerr from "./Managerr/Managerr";
 import { jwtDecode } from "jwt-decode";
 import { log10 } from "chart.js/helpers";
 
-
 function App() {
   const [isManager, setIsManager] = useState("");
   // Lấy token từ storage
@@ -25,7 +24,8 @@ function App() {
       console.log("Decoded token:", decoded); // Log toàn bộ payload
 
       // Lấy giá trị role
-      role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+      role =
+        decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
       console.log("Role sau khi giải mã:", role); // Log role
     } catch (error) {
       console.error("Invalid token:", error);
@@ -33,17 +33,14 @@ function App() {
   }
   useEffect(() => {
     setIsManager(role);
-
-
-  },[token])
+  }, [token]);
 
   // Kiểm tra nếu vai trò là "manager"
-
 
   return (
     <Router>
       {/* Chỉ hiện Navigation nếu không phải manager */}
-       <Navigation />
+      <Navigation />
 
       <Routes>
         <Route path="/*" element={<UserRouter />} />
@@ -54,7 +51,7 @@ function App() {
       </Routes>
 
       {/* Chỉ hiện Footer nếu không phải manager */}
-       <Footer />
+      <Footer />
 
       <ToastContainer
         position="top-right"
