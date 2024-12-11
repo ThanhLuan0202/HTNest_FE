@@ -104,7 +104,7 @@ function Cart() {
                           </form>
                         </td>
                         <td>
-                          <div className="total">
+                          <div className="total-price-cart">
                             {totalPrice} đ
                           </div>
                         </td>

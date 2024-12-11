@@ -43,7 +43,7 @@ function App() {
   return (
     <Router>
       {/* Chỉ hiện Navigation nếu không phải manager */}
-      {!isManager && <Navigation />}
+       <Navigation />
 
       <Routes>
         <Route path="/*" element={<UserRouter />} />
@@ -54,7 +54,7 @@ function App() {
       </Routes>
 
       {/* Chỉ hiện Footer nếu không phải manager */}
-      {!isManager && <Footer />}
+       <Footer />
 
       <ToastContainer
         position="top-right"

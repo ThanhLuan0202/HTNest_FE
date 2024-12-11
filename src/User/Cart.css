@@ -95,8 +95,8 @@
 	border: solid 2px #ccc;
 	border-radius: 20px;  
 }
-.total {
-	font-size: 24px;
+.total-price-cart {
+	font-size: 18px;
 	font-weight: 600;
 	color: rgb(145, 79, 26);
 }
