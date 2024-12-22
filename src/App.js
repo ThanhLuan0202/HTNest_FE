@@ -10,37 +10,43 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Managerr from "./Managerr/Managerr";
 import { jwtDecode } from "jwt-decode";
-import { log10 } from "chart.js/helpers";
 
 function App() {
-  const [isManager, setIsManager] = useState("");
-  // Lấy token từ storage
+  const [isManager, setIsManager] = useState(null); // Khởi tạo là null để kiểm tra trạng thái
   const token = localStorage.getItem("token"); // Lấy token từ localStorage
   let role = null;
 
-  if (token) {
-    try {
-      const decoded = jwtDecode(token); // Giải mã token
-      console.log("Decoded token:", decoded); // Log toàn bộ payload
-
-      // Lấy giá trị role
-      role =
-        decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-      console.log("Role sau khi giải mã:", role); // Log role
-    } catch (error) {
-      console.error("Invalid token:", error);
-    }
-  }
   useEffect(() => {
-    setIsManager(role);
-  }, [token]);
+    if (token) {
+      try {
+        const decoded = jwtDecode(token); // Giải mã token
+        role = decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+        setIsManager(role === "Manager"); // Kiểm tra xem vai trò có phải là "Manager" không
+      } catch (error) {
+        console.error("Invalid token:", error);
+        setIsManager(false); // Nếu token không hợp lệ, coi như không phải là manager
+      }
+    } else {
+      setIsManager(false); // Nếu không có token, coi như không phải là manager
+    }
+  }, [token]); // Chạy lại mỗi khi token thay đổi
 
-  // Kiểm tra nếu vai trò là "manager"
+  // Khi đăng xuất, token bị xóa khỏi localStorage và isManager cần được cập nhật lại.
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setIsManager(false); // Khi token bị xóa, đảm bảo isManager là false
+    };
+    window.addEventListener("storage", handleStorageChange); // Lắng nghe sự thay đổi trong localStorage
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   return (
     <Router>
-      {/* Chỉ hiện Navigation nếu không phải manager */}
-      <Navigation />
+      {/* Chỉ hiển thị Navigation nếu là không phải manager */}
+      {!isManager && <Navigation />}
 
       <Routes>
         <Route path="/*" element={<UserRouter />} />
@@ -50,8 +56,8 @@ function App() {
         <Route path="/manager/*" element={<Managerr />} />
       </Routes>
 
-      {/* Chỉ hiện Footer nếu không phải manager */}
-      <Footer />
+      {/* Chỉ hiển thị Footer nếu là không phải manager */}
+      {!isManager && <Footer />}
 
       <ToastContainer
         position="top-right"

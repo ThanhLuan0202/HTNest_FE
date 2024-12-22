@@ -30,30 +30,30 @@ function Login() {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Đăng nhập không thành công.");
       }
-
+  
       const data = await response.json();
       localStorage.setItem("token", data.token); // Lưu token vào localStorage
-
+  
       const decoded = jwtDecode(data.token); // Giải mã decode
       const userName =
         decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];
       const userRole =
         decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
-
+  
       localStorage.setItem("name", userName); // Lưu userName vào localStorage
-
-      // Kiểm tra nếu là role "manager", chuyển hướng đến trang quản lý
+  
+      // Kiểm tra vai trò
       if (userRole === "Manager") {
-        navigate("/manager"); // Điều hướng đến trang quản lý
+        navigate("/manager"); // Chuyển hướng đến trang quản lý
         window.location.reload();
       } else {
-        navigate("/"); // Nếu không phải manager, chuyển đến trang chính
+        navigate("/"); // Nếu không phải Manager, chuyển đến trang chính
       }
-
+  
       toast.success("Tài Khoản " + userName + " Đăng Nhập Thành Công");
     } catch (error) {
       console.error("Lỗi:", error.message);
@@ -63,6 +63,7 @@ function Login() {
       setLoading(false);
     }
   };
+  
 
   return (
     <div className="login">

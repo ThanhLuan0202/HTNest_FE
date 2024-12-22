@@ -130,8 +130,8 @@ const handlePageChange = (pageNumber) => {
                     <tbody>
                         {post.map((post, index) => (
                             <tr key={index}>
-                                <td>{post.productCode}</td>
-                                <td>{post.productName}</td>
+                                <td>{post.userName}</td>
+                                <td>{post.fullName}</td>
                                 <td>
                                     <img
                                         style={{ width: "50px", height: "50px" }}
@@ -140,10 +140,11 @@ const handlePageChange = (pageNumber) => {
                                         alt="{post.productName}"
                                     />
                                 </td>
-                                <td>{post.stockQuantity}</td>
+                                <td>{post.email}</td>
 
-                                <td> {post.price} VND</td>
-
+                                <td> {post.phoneNumber}</td>
+                                <td> {post.role}</td>
+                                <td> {post.status}</td>
                                 <td>
                                     <div className="btn-group">
                                         <i
