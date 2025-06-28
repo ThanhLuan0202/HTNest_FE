@@ -7,7 +7,7 @@
 
 📌 Introduction
 
-Yên Sào House is an e-commerce platform specializing in providing premium bird's nest products and health care service packages from natural bird's nest.
+Yên Sào HTNest is an e-commerce platform specializing in providing premium bird's nest products and health care service packages from natural bird's nest.
 
 
 Users can view products, order, pay online, and track purchase history.
